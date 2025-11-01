@@ -59,7 +59,7 @@ stateDiagram-v2
 - `<SR04.h>`
 
 ## Schema
-Foto
+![Schema](circuit.png)
 
 
 ## Alimentazione
