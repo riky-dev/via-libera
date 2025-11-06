@@ -59,7 +59,7 @@ stateDiagram-v2
 - `<SR04.h>`
 
 ## Schema
-![Schema](circuit.png)
+![Schema](circuito.jpg)
 
 
 ## Alimentazione
@@ -80,3 +80,4 @@ gif, foto, video
 ## Considerazioni
 Potrei usare uno schermo LCD per le informazioni al posto di dover controllare la Serial Monitor, in questo modo non ci sarebbe bisogno di avere il prototipo connesso al PC.
 
+Durante l'inizializzazione il servo viene portato al minimo senza nessun controllo. Si potrebbe aggiungere un ulteriore stato che consiste nel posizionare la sbarra basandosi sul sensore a effetto hall.
