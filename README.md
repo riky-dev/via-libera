@@ -46,11 +46,11 @@ stateDiagram-v2
 - Elegoo Uno R3
 - Servo SG90
 - Sensore a ultrasuoni HC-SR04
+- Sensore effetto Hall KY-003
 - Ricevitore IR + Telecomando
 - 3 LED (Rosso, Giallo, Verde)
 - 3 Resistenze da 220 Ohm
-- Breadboard e cavi
-- Sensore effetto Hall KY-003 e un magnete
+- Breadboard, cavi, fascette, magnete, ...
 
 ### Librerie Software
 - `<Servo.h>`  
@@ -59,7 +59,7 @@ stateDiagram-v2
 - `<SR04.h>`
 
 ## Schema
-![Schema](circuito.jpg)
+![Schema](media/circuito.jpg)
 
 
 ## Alimentazione
@@ -74,8 +74,13 @@ Il servo ha una corrente di stallo tra i 600 e 800mA, i quali superano i 500mA d
 
 Durante lo sviluppo non ho incontrato problemi relativi alla tensione, probabilmente perché non sforzando mai il motore non ho mai raggiunto il picco.
 
-## Foto
-gif, foto, video
+## Immagini
+![Funzionamento](media/funzionamento.gif)
+
+![Aprto](media/aperto.jpg)
+
+![Alto](media/alto.jpg)
+
 
 ## Considerazioni
 Potrei usare uno schermo LCD per le informazioni al posto di dover controllare la Serial Monitor, in questo modo non ci sarebbe bisogno di avere il prototipo connesso al PC.
