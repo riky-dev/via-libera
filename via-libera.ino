@@ -94,8 +94,7 @@ void setup() {
 
   digitalWrite(RED_LED, HIGH);
 
-  pinMode(HALL_PIN, INPUT_PULLUP);
-  digitalWrite(HALL_PIN, LOW);
+  pinMode(HALL_PIN, INPUT);
 
   currentStatus = IDLE;
 
@@ -157,7 +156,7 @@ void readSensors() {
     vehicleDetected = false;
   }
 
-  if (digitalRead(2) == LOW) {
+  if (digitalRead(HALL_PIN) == LOW) {
     isGateLevel = true;
   } else {
     isGateLevel = false;
