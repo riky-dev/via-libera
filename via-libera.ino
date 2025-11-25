@@ -25,14 +25,14 @@
 #define IR_CODE_9    0xB54AFF00
 
 Servo gateServo;
-int servoMin = 60;
-int servoMax = 175;
-long SERVO_MOVE_INTERVAL = 20;
+const int SERVO_MIN = 60;
+const int SERVO_MAX = 175;
+const unsigned long SERVO_MOVE_INTERVAL = 20;
 
-int currentServoPos = servoMin;
-long servoLastMoveTime = 0;
-long closingStartTime = 0;
-long CLOSING_TIMEOUT = 10000;
+int currentServoPos = SERVO_MIN;
+unsigned long servoLastMoveTime = 0;
+unsigned long closingStartTime = 0;
+const unsigned long CLOSING_TIMEOUT = 10000;
 
 SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
 int currentDistance = 999;
@@ -70,11 +70,11 @@ void readSensors();
 Scheduler ts;
 
 Task t_FSM (
-    50,             // freq
-    TASK_FOREVER,   // span temporale
+    50,               // freq
+    TASK_FOREVER,     // span temporale
     &handleStatuses,  // attività
-    &ts,            // aggancio
-    true            // abilitata
+    &ts,              // aggancio
+    true              // abilitata
 );
 
 Task t_Sensors (
@@ -99,7 +99,7 @@ void setup() {
   currentStatus = IDLE;
 
   gateServo.attach(SERVO_PIN);
-  gateServo.write(servoMin);
+  gateServo.write(SERVO_MIN);
   delay(500);
   gateServo.detach();
 
@@ -200,7 +200,7 @@ void handleVehicleWaiting() {
   }
   
   if (!vehicleDetected) {
-    Serial.println(F("Veicolo andato via."));
+    Serial.println(F("Vehicle moved away."));
     Serial.println(F("Stato: VEHICLE_WAITING -> IDLE"));
     
     irrecv.disableIRIn();
@@ -280,13 +280,13 @@ void handleOpening() {
   if (millis() - servoLastMoveTime > SERVO_MOVE_INTERVAL) {
     servoLastMoveTime = millis();
     
-    if (currentServoPos < servoMax) {
+    if (currentServoPos < SERVO_MAX) {
       currentServoPos++; 
       gateServo.write(currentServoPos);
     }
   }
   
-  if (currentServoPos >= servoMax) {
+  if (currentServoPos >= SERVO_MAX) {
     Serial.println(F("Cancello aperto!"));
     Serial.println(F("Stato: OPENING -> OPEN"));
     
@@ -348,13 +348,13 @@ void handleClosing() {
   if (millis() - servoLastMoveTime > SERVO_MOVE_INTERVAL) {
     servoLastMoveTime = millis();
     
-    if (currentServoPos > servoMin) {
+    if (currentServoPos > SERVO_MIN) {
       currentServoPos--;
       gateServo.write(currentServoPos);
     }
   }
   
-  if (currentServoPos <= servoMin) {
+  if (currentServoPos <= SERVO_MIN) {
     Serial.println(F("ERRORE: Finecorsa non rilevato!"));
     Serial.println(F("Stato: CLOSING -> ERROR"));
     
